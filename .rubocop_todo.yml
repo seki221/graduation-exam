@@ -1,0 +1,5 @@
+Metrics/AbcSize:
+  Max: 26  # デフォルトの17から増やす
+
+Metrics/MethodLength:
+  Max: 22  # デフォルトの10から増やす

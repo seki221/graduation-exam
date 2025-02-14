@@ -110,3 +110,4 @@ gem 'omniauth-rails_csrf_protection'
 gem 'rails_admin'
 
 gem 'rubocop', require: false
+gem 'rubocop-rails', require: false 
