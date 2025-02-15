@@ -22,3 +22,6 @@ Layout/LineLength:
 
 Style/Documentation:
   Enabled: false
+
+Rails/EnumSyntax:
+  Enabled: false
