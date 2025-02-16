@@ -1,7 +1,7 @@
 <div class="flex my-16 items-center justify-center">
   <div class="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
     <div class="p-4 border-2 rounded-lg border-slate-300">
-      <h2><%= t('devise.passwords.new.forgot_your_password') %></h2>
+      <h2><%= t('devise.passwords.new.send_me_reset_password_instructions') %></h2>
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
