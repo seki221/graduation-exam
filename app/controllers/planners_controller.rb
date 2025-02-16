@@ -25,6 +25,7 @@ class PlannersController < ApplicationController
 
   def create
     @planner = current_user.planners.new(planner_params)
+    # #↓これのせいでプラン作成しても0時から23:59となる# #
     @planner.start_date = @planner.start_date.change(hour: 0, min: 0, sec: 0) if @planner.start_date.present?
     @planner.end_date = @planner.end_date.change(hour: 23, min: 59, sec: 59) if @planner.end_date.present?
     if @planner.save
