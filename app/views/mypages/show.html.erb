@@ -3,8 +3,26 @@
     <div class="sectionMain">
       <div class="col-12">
         <div class="planList">
-            <%= render 'planners/planner' %> 
+          <%= render 'planners/planner' %> 
         </div>
+        <div class="categoryBox">
+          <div class="member">
+            <h2>登録情報管理</h2>
+            <ul class="txtLinkList boxMLR">
+              <li class="arrow"><a href="/mypages/admin/">情報変更・退会</a></li>
+              <li class="arrow"><a href="/mypages/mailnews/input/">メール配信登録管理・解除</a></li>
+              <li class="arrow none"><a class="js-logout" href="/mypages/logout/"><span>ログアウト</span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="categoryBox">
+          <div class="favorite">
+            <%= link_to favorite_path(@favorite) do %>
+              <i class='bi bi-pencil-fill' width="50" height="50"></i>
+            <% end %>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
