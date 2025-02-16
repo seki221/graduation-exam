@@ -22,11 +22,11 @@
             <li class="nav-item">
               <%= link_to 'マイページ', mypage_path , class: 'nav-link' %>
             </li>
-            <li class="nav-item">
-              <%= link_to 'このアプリについて', root_path , class: 'nav-link' %>
-            </li>
             <li class="nav-item before-login">
             <%= link_to "思い出ボックス", planners_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'このアプリについて', root_path , class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to 'ログアウト', destroy_user_session_path, class: 'nav-link', method: :delete %>
