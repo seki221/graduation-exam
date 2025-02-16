@@ -8,7 +8,7 @@ require 'carrierwave'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-# config.i18n.default_locale = :ja
+config.i18n.default_locale = :ja
 module TripScheduleApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
