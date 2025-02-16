@@ -2,10 +2,10 @@
 
 class MypagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only: %i[index]
+  before_action :correct_user, only: %i[show]
   # show edit update destroy
 
-  def index
+  def show
     @planners = current_user.planners
   end
 
