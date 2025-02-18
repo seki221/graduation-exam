@@ -274,6 +274,7 @@ p.button{
   align-items: center;
   border: 2px solid #fff;
   border-radius: 12px;
+  background-color:antiquewhite;
   box-sizing: border-box;
   cursor: pointer;
   display: grid;
@@ -281,6 +282,8 @@ p.button{
   grid-template-columns: 4em 1fr;
   padding: 12px;
   position: relative;
+  margin: 12px 24px;
+  color: #000;
 }
 p .date,.mx-lg-5{
   white-space: nowrap;
@@ -300,4 +303,20 @@ select:-internal-list-box option {
 select:-internal-list-box option:checked {
   background-color: light-dark(rgb(206, 206, 206), rgb(84, 84, 84));
   color: light-dark(rgb(16, 16, 16), rgb(255, 255, 255));
+}
+
+.schedule_list_each{
+  width: 60%;
+  /* width: -webkit-fill-available; */
+}
+.schedule_delete, .schedule_edit{
+  padding: 4% 2% 0 0;
+}
+
+.button-edit, .button-delete {
+  padding: 1em 1em;
+  text-decoration: none;
+  color: #000;
+  background-color: antiquewhite;
+  border-radius: 7px;
 }
