@@ -1,9 +1,9 @@
 <%= render 'shared/planTabs' %>
 <div class="sectionMain">
   <div class="button-group">
-  <% if @planner.user == current_user %>
-    <%= link_to "作成", new_planner_schedule_path(planner_id: @planner.id), class:'buttonCreate itemCreate' %>
-  <% end %>
+    <% if @planner.user == current_user %>
+      <%= link_to "作成", new_planner_schedule_path(planner_id: @planner.id), class:'buttonCreate itemCreate' %>
+    <% end %>
   </div>
   <div class="contents">
     <summary class="onedayHeader">
@@ -11,27 +11,43 @@
         <p class="date"><%= l(@planner.start_date, format: "%m月%d日(%a)") %></p>
       </div>
     </summary>
-    
     <% @schedules.each do |schedule| %>
-      <%= link_to planner_schedule_path(planner_id: @planner.id, id: schedule.id) do %>
-        <li class="schedule-content mb-3 ">
-          <div class="d-flex">
-          <p class="date"><%= l schedule.start_date, format: :day if schedule.start_date.present? %></p>日
-          <p class="content mx-4	">
-            <span class="start">
-            <%= l schedule.start_date, format: :only_time if schedule.start_date.present? %>〜
-            </span>
-            <span class="end">
-            <%= l schedule.end_date, format: :only_time if schedule.end_date.present? %>
-            </span>
-          </p>
-          <p class="content mx-lg-5 mb-0 pt-3"><%= schedule.title.presence  %></p>
+      <div class="schedule_list d-flex">
+        <div class="schedule_list_each">
+          <%= link_to planner_schedule_path(planner_id: @planner.id, id: schedule.id) do %>
+            <li class="schedule-content">
+              <div class="d-flex">
+              <p class="date"><%= l schedule.start_date, format: :day if schedule.start_date.present? %></p>日
+              <p class="content mx-4	">
+                <span class="start">
+                <%= l schedule.start_date, format: :only_time if schedule.start_date.present? %>〜
+                </span>
+                <span class="end">
+                <%= l schedule.end_date, format: :only_time if schedule.end_date.present? %>
+                </span>
+              </p>
+              <p class="content mx-lg-5 mb-0 pt-3"><%= schedule.title.presence  %></p>
+              </div>
+            </li>
+          <% end %>
+        </div>
+        <div class="schedule_edit">
+          <div class="schedule_edit_box mt-3">
+            <%= link_to planner_schedules_path, id: "button-edit-#{schedule.id}", class: "button-edit" do %>
+              <i class="bi bi-pencil-fill"></i>
+            <% end %>
           </div>
-          
-        </li>
-      <% end %>
+        </div>
+        <div class="schedule_delete">
+          <div class="schedule_delete_box mt-3">
+            <%= link_to planner_schedules_path,  id: "button-delete-#{schedule.id}", class: "button-delete", data: { turbo_method: "delete", turbo_confirm: "削除しますか？" } do %>
+            <i class="bi bi-trash-fill"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
     <% end %>
+    <div class="favorite_star">
+    </div>
   </div>
 </div>
-
-
