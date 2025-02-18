@@ -1,0 +1,21 @@
+<% content_for(:title, t('.title')) %>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <%= render 'search_form', q: @q, url: favorites_schedules_path %>
+    </div>
+  </div>
+  <!-- 掲示板一覧 -->
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <% if @favorite_schedules.present? %>
+          <%= render @favorite_schedules %>
+          <%= paginate @favorite_schedules, theme: 'bootstrap-5'%>
+        <% else %>
+          <p><%= t('.no_result') %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

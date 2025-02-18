@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "favorite-button-for-schedule-#{@schedule.id}" do %>
+  <%= render 'schedules/unfavorite', schedule: @schedule %>
+<% end %>
