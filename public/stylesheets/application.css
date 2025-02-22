@@ -270,7 +270,7 @@ p.button{
   font-size: 24px;
 }
 /* リスト */
-.schedule-content{
+.schedule_contents{
   align-items: center;
   border: 2px solid #fff;
   border-radius: 12px;
@@ -285,8 +285,11 @@ p.button{
   margin: 12px 24px;
   color: #000;
 }
-p .date,.mx-lg-5{
+p.date,.mx-lg-5{
   white-space: nowrap;
+}
+p.schedule_date::after {
+  content: "日";
 }
 select {
   background-color: #f2f2f2!important;
