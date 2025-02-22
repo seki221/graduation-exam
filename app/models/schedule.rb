@@ -6,6 +6,7 @@ class Schedule < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :schedule_transportations, dependent: :destroy
   has_many :transportations, through: :schedule_transportations
+  has_many :favorited_users, through: :favorites, source: :user
   has_many :favorites, dependent: :destroy
   # has_and_belongs_to_many :planners
 

@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :schedules, dependent: :destroy
   has_many :planners, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :favorited_schedules, through: :favorites, source: :schedule
+  has_many :favorite_schedules, through: :favorites, source: :schedule
 
   enum role: { general: 0, admin: 1 }
 
@@ -22,6 +22,10 @@ class User < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[user]
+  end
+
+  def favorite?(schedule)
+    favorite_schedules.exists?(schedule)
   end
 
   # by guest_user
@@ -119,5 +123,14 @@ class User < ApplicationRecord
 
       self.screen_name = SecureRandom.alphanumeric
     end
+  end
+
+  # お気に入り
+  def favorite(board)
+    favorite_boards << board
+  end
+
+  def unfavorite(board)
+    favorite_boards.destroy(board)
   end
 end

@@ -1,7 +1,7 @@
 <div class='ms-auto'>
   <% if current_user.favorite?(schedule) %>
-    <%= render 'unfavorite', { schedule: schedule } %>
+    <%= render 'unfavorite', schedule: schedule %>
   <% else %>
-    <%= render 'favorite', { schedule: schedule } %>
+    <%= render 'favorite', schedule: schedule %>
   <% end %>
 </div>
