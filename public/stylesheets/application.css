@@ -52,6 +52,11 @@ body {
   /* margin: 100px 0; */
 }
 
+p{
+  margin: auto !important;
+  padding: 0 !important;
+}
+
 /* header(とfooter) */
 header {
   top: 0;
