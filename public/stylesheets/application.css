@@ -282,13 +282,15 @@ p.button{
   background-color:antiquewhite;
   box-sizing: border-box;
   cursor: pointer;
-  display: grid;
+  /* display: grid; */
+  list-style: none;
   gap: 8px 12px;
   grid-template-columns: 4em 1fr;
   padding: 12px;
   position: relative;
   margin: 12px 24px;
   color: #000;
+  /* width: max-content; */
 }
 p.date,.mx-lg-5{
   white-space: nowrap;
@@ -312,11 +314,13 @@ select:-internal-list-box option:checked {
   background-color: light-dark(rgb(206, 206, 206), rgb(84, 84, 84));
   color: light-dark(rgb(16, 16, 16), rgb(255, 255, 255));
 }
-
-.schedule_list_each{
-  width: 60%;
-  /* width: -webkit-fill-available; */
+.schedule_list{
+  width: 100%;
 }
+.schedule_list_each{
+  min-width: 70%;
+  /* width: -webkit-fill-available; */
+} 
 .schedule_delete, .schedule_edit{
   padding: 4% 2% 0 0;
 }
@@ -327,4 +331,7 @@ select:-internal-list-box option:checked {
   color: #000;
   background-color: antiquewhite;
   border-radius: 7px;
+}
+.favorite_star{
+  padding-left: 20%;
 }
