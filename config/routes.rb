@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     # registrations: 'users/registrations',
     # sessions: 'users/sessions',
   }
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
 
   # OAuthログイン関連
   post 'oauth/callback', to: 'oauths#callback'
@@ -19,6 +22,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboards#index'
     resources :dashboards, only: [:index]
+    get 'login' => 'user_sessions#new', :as => :login
+    post 'login' => "user_sessions#create"
+    delete 'logout' => 'user_sessions#destroy', :as => :logout
     resources :users, only: %i[index edit update destroy]
     resources :user_sessions, only: %i[new create destroy], path_names: { new: 'login', destroy: 'logout' }
   end
@@ -26,6 +32,7 @@ Rails.application.routes.draw do
   # planページ
   resources :planners, only: %i[index new create show edit update destroy] do
     resources :schedules, only: %i[index new create show edit update destroy] do
+      get :favorites
     end
   end
 
@@ -38,4 +45,6 @@ Rails.application.routes.draw do
     get 'password', to: 'users#edit_password', as: :edit_password
     patch 'password', to: 'users#update_password'
   end
+
+  resources :favorites, only: %i[index create destroy show], shallow: true
 end

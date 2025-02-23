@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 class FavoritesController < ApplicationController
-  before_action :set_schedule
+  before_action :set_schedule, only: %i[create destroy]
   before_action :authenticate_user! # ログイン中のユーザーのみに許可（未ログインなら、ログイン画面へ移動）
+
+  # お気に入り表示
+  def index
+    @favorites = current_user.favorites.includes(:schedule)
+  end
 
   # お気に入り登録
   def create
@@ -20,6 +25,6 @@ class FavoritesController < ApplicationController
   private
 
   def set_schedule
-    @schedule = schedule.find(params[:schedule_id])
+    @schedule = Schedule.find(params[:schedule_id])
   end
 end

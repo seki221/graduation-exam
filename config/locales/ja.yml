@@ -48,7 +48,9 @@ ja:
       title: "予定編集"
       edit: "保存する"
     destroy: "スケジュールを削除しました"
-
+  favorites:
+    index:
+      no_result: "お気に入りデータがありません"
   date:
     formats:
       default: "%Y.%m.%d.(%a)"
