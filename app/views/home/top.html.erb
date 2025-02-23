@@ -48,7 +48,7 @@
   <!-- シェアタグ -->
   <div>
     <div class="share-buttons mb-4">
-      <p><%= t("views.share.tabi") %>: </p>
+      <p class="share"><%= t("views.share.tabi") %>: </p>
       <%= link_to "https://twitter.com/intent/tweet?text=#{URI.encode_www_form_component(t("views.share.twitter"))}&url=#{URI.encode_www_form_component(request.original_url)}", target: "_blank", rel: "noopener", class: "share-button share-button-twitter" do %>
         <i class="fa-brands fa-twitter"></i>
       <% end %>
