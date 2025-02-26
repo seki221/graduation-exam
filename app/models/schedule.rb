@@ -8,7 +8,6 @@ class Schedule < ApplicationRecord
   has_many :transportations, through: :schedule_transportations
   has_many :favorited_users, through: :favorites, source: :user
   has_many :favorites, dependent: :destroy
-  # has_and_belongs_to_many :planners
 
   validates :title, presence: true
   validates :start_date, presence: true
@@ -29,5 +28,9 @@ class Schedule < ApplicationRecord
     return unless end_date < start_date
 
     errors.add(:end_date, 'は開始日時より後に設定してください。')
+  end
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user)
   end
 end

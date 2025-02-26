@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
-         :rememberable, :validatable, :timeoutable, :confirmable,
+         :rememberable, :validatable, :timeoutable,
          :omniauthable, omniauth_providers: [:google_oauth2]
 
   validates :nickname, presence: true, length: { minimum: 2 }, unless: :omniauth_provider?
@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :schedules, dependent: :destroy
   has_many :planners, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :favorite_schedules, through: :favorites, source: :schedule
+  has_many :favorites_schedules, through: :favorites, source: :schedule
 
   enum role: { general: 0, admin: 1 }
 
@@ -24,8 +24,17 @@ class User < ApplicationRecord
     %w[user]
   end
 
+  # お気に入り
+  def favorite(schedule)
+    favorites_schedules << schedule
+  end
+
+  def unfavorite(schedule)
+    favorites_schedules.destroy(schedule)
+  end
+
   def favorite?(schedule)
-    favorite_schedules.exists?(schedule)
+    favorites_schedules.include?(schedule)
   end
 
   # by guest_user
@@ -67,7 +76,8 @@ class User < ApplicationRecord
     user.email ||= auth.info.email
     user.password ||= Devise.friendly_token[0, 20]
     user.nickname ||= auth.info.name || "User#{SecureRandom.hex(4)}"
-    user.skip_confirmation!
+    # user.skip_confirmation!
+    user.confirmed_at ||= Time.current
     user.save!
   end
 
@@ -123,14 +133,5 @@ class User < ApplicationRecord
 
       self.screen_name = SecureRandom.alphanumeric
     end
-  end
-
-  # お気に入り
-  def favorite(board)
-    favorite_boards << board
-  end
-
-  def unfavorite(board)
-    favorite_boards.destroy(board)
   end
 end

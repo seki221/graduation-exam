@@ -27,16 +27,18 @@
                     <%= l schedule.end_date, format: :only_time if schedule.end_date.present? %>
                     </span>
                   </p>
-                  <p class="content mx-lg-5 mb-0"><%= schedule.title.presence  %></p>
-                </div>
-                <div class="favorite_star mb-3 mt-3">
-                  <%= render 'favorite_buttons', schedule: @schedule %>
+                  <p class="content mx-lg-5"><%= schedule.title.presence  %></p>
                 </div>
               </div>
             </li>
           <% end %>
         </div>
+        <%# favorite_button %>
+        <div class="favorite_star mb-3 mt-3">
+          <%= render 'favorites/favorite_buttons', schedule:schedule %>
+        </div>
         <% if current_user.own?(schedule) %>
+        <%# 更新 %>
           <div class="schedule_edit">
             <div class="schedule_edit_box mt-3">
               <%= link_to planner_schedules_path, id: "button-edit-#{schedule.id}", class: "button-edit" do %>
@@ -44,7 +46,7 @@
               <% end %>
             </div>
           </div>
-
+          <%# 削除 %>
           <div class="schedule_delete">
             <div class="schedule_delete_box mt-3">
               <%= link_to planner_schedules_path,  id: "button-delete-#{schedule.id}", class: "button-delete", data: { turbo_method: "delete", turbo_confirm: "削除しますか？" } do %>
@@ -52,6 +54,7 @@
               <% end %>
             </div>
           </div>
+          <%# ここまで %>
         <% end %>
       </div>
     <% end %>
