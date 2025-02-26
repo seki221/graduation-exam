@@ -1,0 +1,3 @@
+<%= link_to schedule_favorites_path(schedule_id: schedule.id), id: "js-favorite-button-for-schedule-#{schedule.id}", method: :post do %>
+  <%= icon 'far', 'star' %>
+<% end%>

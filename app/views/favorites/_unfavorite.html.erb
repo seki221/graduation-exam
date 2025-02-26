@@ -1,5 +1,6 @@
-<% if current_user.favorites.exists?(schedule: schedule) %>
-  <%= link_to favorites_path(current_user.favorites.find_by(schedule_id: schedule)),
+<% if current_user.favorites.exists?(schedule_id: schedule.id) %>
+  <%= link_to remove_favorites_path(schedule_id: schedule.id),
+              remote: true, method: :delete,
               id: "unfavorite-button-for-schedule-#{schedule.id}",
               data: { turbo_method: :delete } do %>
     <i class="bi bi-star-fill"></i>
