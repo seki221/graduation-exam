@@ -22,6 +22,10 @@
     display: flex;
     flex-wrap: wrap;
   }
+  .button-edit, .button-delete {
+    padding: 12px 12px 12px 1px;
+    margin: 0 5px;
+  }
 }
 /* pc仕様 */
 @media screen and (min-width: 601px) {
@@ -37,6 +41,18 @@
   .wrapper{
     grid-template-columns: 224px 1fr !important;
   }
+}
+@media screen and (min-width: 900px){
+.button-edit,
+.button-delete {
+  background-color: antiquewhite;
+  padding: 1em 1em;
+  margin: 0 5px;
+}
+.favorite_star {
+  padding: 15px;
+  margin: 12px;
+}
 }
 
 html,body{
@@ -277,7 +293,7 @@ p.button{
 /* リスト */
 .schedule_contents{
   align-items: center;
-  border: 2px solid #fff;
+  /* border: 2px solid #fff; */
   border-radius: 12px;
   background-color:antiquewhite;
   box-sizing: border-box;
@@ -286,7 +302,7 @@ p.button{
   list-style: none;
   gap: 8px 12px;
   grid-template-columns: 4em 1fr;
-  padding: 12px;
+  padding-left: 12px;
   position: relative;
   margin: 12px 24px;
   color: #000;
@@ -322,16 +338,18 @@ select:-internal-list-box option:checked {
   /* width: -webkit-fill-available; */
 } 
 .schedule_delete, .schedule_edit{
-  padding: 4% 2% 0 0;
+  margin: 12px 0;
 }
 
 .button-edit, .button-delete {
-  padding: 1em 1em;
+
+  margin: 0 5px;
   text-decoration: none;
   color: #000;
-  background-color: antiquewhite;
   border-radius: 7px;
 }
 .favorite_star{
-  padding-left: 20%;
+  padding: 15px 15px 15px 0px;
+  margin: 12px 12px 12px 0;
 }
+
