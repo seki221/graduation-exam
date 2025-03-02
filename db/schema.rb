@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_250_125_083_355) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_02_092952) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 20_250_125_083_355) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.index ['schedule_id'], name: 'index_favorites_on_schedule_id'
+    t.index %w[user_id schedule_id], name: 'index_favorites_on_user_id_and_schedule_id', unique: true
     t.index ['user_id'], name: 'index_favorites_on_user_id'
   end
 
