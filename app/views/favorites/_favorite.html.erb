@@ -1,3 +1,4 @@
-<%= link_to schedule_favorites_path(schedule_id: schedule.id), id: "js-favorite-button-for-schedule-#{schedule.id}", method: :post do %>
-  <%= icon 'far', 'star' %>
-<% end%>
+<%= link_to favorite_planner_schedule_path(planner_id: schedule.planner_id, id: schedule.id),
+            data: { turbo_method: :post } do %>
+  <i class="bi bi-star"></i>
+<% end %>

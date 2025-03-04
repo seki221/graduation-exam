@@ -6,32 +6,27 @@ class FavoritesController < ApplicationController
 
   # お気に入り表示
   def index
-    @favorites = current_user.favorites.includes(:schedule)
+    @favorites = current_user.favorite_schedules.includes(:user).order(created_at: :desc)
   end
 
-  # お気に入り登録
-  # def create
-  #   @favorite = Favorite.find_or_create_by(user_id: current_user.id, schedule_id: @schedule.id)
-  #   respond_to do |format|
-  #     format.html { redirect_back fallback_location: root_path }
-  #     format.json { render json: { status: 'added' } }
-  #   end
-  # end
-
   def create
-    @favorite = Favorite.find(params[:favorite_id])
+    @schedule = Schedule.find(params[:schedule_id])
     # scheduleモデルからschedule_idを探してくる。
-    current_user.favorite(@favorite)
+    current_user.favorite(@schedule)
     # ログイン中のユーザーと紐づけられたidを取ってくる。この時、user.rbに定義したaliasを使用し、idの情報を保存する。
+    respond_to do |format|
+      format.js # create.js.erb をレンダリング
+      format.html { redirect_to request.referer, notice: 'ブックマークしました' } # rubocop:disable Rails/I18nLocaleTexts
+    end
   end
 
   # お気に入り削除
   def destroy
-    @favorite = Favorite.find_by(user_id: current_user.id, schedule_id: @schedule.id)
-    @favorite&.destroy
+    @schedule = Schedule.find(params[:schedule_id])
+    current_user.unfavorite(@schedule)
     respond_to do |format|
-      format.html { redirect_back fallback_location: root_path }
-      format.json { render json: { status: 'removed' } }
+      format.js # destroy.js.erb をレンダリング
+      format.html { redirect_to request.referer, notice: 'ブックマークを解除しました' } # rubocop:disable Rails/I18nLocaleTexts
     end
   end
 
