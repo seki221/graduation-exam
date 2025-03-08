@@ -32,7 +32,9 @@ Rails.application.routes.draw do
   # planページ
   resources :planners, only: %i[index new create show edit update destroy] do
     resources :schedules, only: %i[index new create show edit update destroy] do
-      resource :favorite, only: %i[create destroy]
+      collection do
+        get :bookmarks
+      end
     end
   end
 
@@ -46,5 +48,5 @@ Rails.application.routes.draw do
     patch 'password', to: 'users#update_password'
   end
 
-  resources :favorites, only: %i[create destroy]
+  resources :bookmarks, only: %i[create destroy]
 end
