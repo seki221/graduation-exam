@@ -17,27 +17,14 @@ Rails.application.routes.draw do
   get 'oauth/callback', to: 'oauths#callback'
   get 'oauth/:provider', to: 'oauths#oauth', as: :auth_at_provider
 
-  # 管理者関連
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  namespace :admin do
-    root 'dashboards#index'
-    resources :dashboards, only: [:index]
-    get 'login' => 'user_sessions#new', :as => :login
-    post 'login' => "user_sessions#create"
-    delete 'logout' => 'user_sessions#destroy', :as => :logout
-    resources :users, only: %i[index edit update destroy]
-    resources :user_sessions, only: %i[new create destroy], path_names: { new: 'login', destroy: 'logout' }
-  end
-
+  
   # planページ
   resources :planners, only: %i[index new create show edit update destroy] do
     resources :schedules, only: %i[index new create show edit update destroy] do
-      collection do
-        get :bookmarks
-      end
     end
   end
-
+  resources :bookmarks, only: %i[index destroy]
+  
   # mypage
   resource :mypage, only: %i[show edit update] do
     get 'submit_plans', to: 'users#submit_plans'
@@ -47,6 +34,4 @@ Rails.application.routes.draw do
     get 'password', to: 'users#edit_password', as: :edit_password
     patch 'password', to: 'users#update_password'
   end
-
-  resources :bookmarks, only: %i[create destroy]
 end

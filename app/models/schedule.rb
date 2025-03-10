@@ -6,8 +6,8 @@ class Schedule < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :schedule_transportations, dependent: :destroy
   has_many :transportations, through: :schedule_transportations
-  has_many :favorite_users, through: :favorites, source: :user
-  has_many :favorites, dependent: :destroy
+  has_many :bookmark_users, through: :bookmarks, source: :user
+  has_many :bookmarks, dependent: :destroy
 
   validates :title, presence: true
   validates :start_date, presence: true
@@ -30,7 +30,7 @@ class Schedule < ApplicationRecord
     errors.add(:end_date, 'は開始日時より後に設定してください。')
   end
 
-  def favorited_by?(user)
-    favorites.exists?(user_id: user)
+  def bookmarkd_by?(user)
+    bookmarks.exists?(user_id: user)
   end
 end

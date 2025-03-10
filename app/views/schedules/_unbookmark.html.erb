@@ -1,0 +1,6 @@
+<%= link_to bookmark_path(current_user.bookmarks.find_by(schedule_id: schedule.id)),
+                method: :delete,
+                data: { turbo_method: :delete },
+                remote: true do %>
+      <i class="bi bi-star-fill"></i>
+    <% end %>

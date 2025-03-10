@@ -11,13 +11,13 @@ class User < ApplicationRecord
 
   has_many :schedules, dependent: :destroy
   has_many :planners, dependent: :destroy
-  has_many :favorites, dependent: :destroy
-  has_many :favorite_schedules, through: :favorites, source: :schedule
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_schedules, through: :bookmarks, source: :schedule
 
   enum role: { general: 0, admin: 1 }
 
-  def own?(schedule)
-    id == schedule.user_id
+  def own?(object)
+    object.user_id == id
   end
 
   def self.ransackable_associations(_auth_object = nil)
@@ -25,24 +25,16 @@ class User < ApplicationRecord
   end
 
   # お気に入り
-  def favorite?(schedule)
-    favorite_schedules.exists?(schedule_id: schedule.id)
+  def bookmark(schedule)
+    bookmarks.create(schedule_id: schedule.id) unless bookmark?(schedule)
   end
 
-  # def favorite(schedule)
-  #   favorite_schedules << schedule
-  # end
-
-  def favorite(schedule)
-    favorites.create(user_id: id, schedule_id: schedule.id) unless favorite?(schedule)
+  def unbookmark(schedule)
+    bookmarks.find_by(schedule_id: schedule.id)&.destroy
   end
 
-  # def unfavorite(schedule)
-  #   favorite_schedules.destroy(schedule)
-  # end
-
-  def unfavorite(schedule)
-    favorites.find_by(schedule_id: schedule.id)&.destroy
+  def bookmark?(schedule)
+    bookmarks.exists?(schedule_id: schedule.id)
   end
 
   # by guest_user

@@ -1,0 +1,6 @@
+<%= link_to bookmarks_path(schedule_id: schedule.id),
+            method: :post,
+            remote: true,
+            id: "bookmark-button-for-schedule-#{schedule.id}" do %>
+  <i class="bi bi-star"></i>
+<% end %>
