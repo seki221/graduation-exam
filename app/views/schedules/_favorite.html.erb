@@ -1,0 +1,8 @@
+  <%= link_to favorites_planner_schedule_path(schedule_id: schedule.id),
+              method: :post,
+              remote: true,
+              data: { turbo: :post},
+              # data: {"turbolinks" => false},
+              id: "favorite-button-for-schedule-#{schedule.id}" do %>
+    <i class="bi bi-star"></i>
+  <% end %>

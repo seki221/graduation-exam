@@ -1,0 +1,7 @@
+<%= link_to remove_favorites_path(schedule),
+            method: :delete,
+            remote: true,
+            data: { turbo: "false" },
+            id: "unfavorite-button-for-schedule-#{schedule.id}" do %>
+  <i class="bi bi-star-fill"></i>
+<% end %>
