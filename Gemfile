@@ -71,6 +71,7 @@ group :development, :test do
   # gem 'minitest', '~> 5.25'
   gem 'rdoc', '~> 6.8'
   gem 'rspec-rails'
+  gem 'pry-rails'
 end
 
 group :development do
