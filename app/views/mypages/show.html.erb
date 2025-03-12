@@ -2,6 +2,11 @@
   <div class="container pt-3">
     <div class="sectionMain">
       <div class="col-12">
+        <div class="user_name">
+          <h5>
+          <%= current_user.nickname %>　の旅情報
+          </h5>
+        </div>
         <div class="planList">
           <%= render 'planners/planner' %> 
         </div>
@@ -17,8 +22,12 @@
         </div>
         <div class="categoryBox">
           <div class="favorite">
-            <%= link_to favorite_path(@favorite) do %>
-              <i class='bi bi-pencil-fill' width="50" height="50"></i>
+            <% if @favorite.present? %>
+              <%= link_to favorite_path(@favorite) do %>
+                <i class='bi bi-pencil-fill' width="50" height="50"></i>
+              <% end %>
+            <% else %>
+              <p>お気に入りはありません</p>
             <% end %>
           </div>
         </div>
