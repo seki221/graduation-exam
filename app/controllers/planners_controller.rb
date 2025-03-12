@@ -45,7 +45,6 @@ class PlannersController < ApplicationController
   end
 
   def destroy
-    # binding.break
     planner = current_user.planners.find(params[:id])
     if planner
       planner.destroy
