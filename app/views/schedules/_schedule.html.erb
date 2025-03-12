@@ -35,7 +35,7 @@
         </div>
         <%# favorite_button %>
         <div class="favorite_star mb-3 mt-3">
-          <%= render 'favorites/favorite_buttons', schedule:schedule %>
+          <%= render 'bookmark_buttons', { schedule: schedule } %>
         </div>
         <% if current_user.own?(schedule) %>
         <%# 更新 %>
