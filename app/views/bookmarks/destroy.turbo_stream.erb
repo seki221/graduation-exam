@@ -1,0 +1,5 @@
+<turbo-stream action="replace" target="bookmark-button-<%= @schedule.id %>">
+  <template>
+    <%= render partial: "schedules/bookmark_button", locals: { schedule: @schedule } %>
+  </template>
+</turbo-stream>
