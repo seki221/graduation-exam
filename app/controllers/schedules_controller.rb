@@ -31,13 +31,6 @@ class SchedulesController < ApplicationController
     @schedule = @planner.schedules.build(schedule_params)
     @schedule.user = current_user
 
-    # if @schedule.start_date.present?
-    #   # @planner = Planner.find_or_create_by(date: @schedule.start_date.to_date)
-    #   @planner = Planner.find_or_create_by(start_date: @schedule.start_date.to_date)
-
-    #   @planner.schedules << @schedule # Planner と Schedule を関連付け
-    # end
-
     if @schedule.save
       redirect_to planner_schedules_path(@planner), notice: t('schedules.create')
     else
@@ -59,6 +52,15 @@ class SchedulesController < ApplicationController
     @schedule.destroy
     flash[:notice_destroy] = t('schedules.destroy')
     redirect_to :date
+  end
+
+  def bookmarks
+    if params[:schedule_id].present?
+      @schedule = Schedule.find(params[:schedule_id])
+      @bookmark_schedules = @schedule.bookmarks
+    else
+      redirect_to root_path, alert: 'スケジュールIDが見つかりません'
+    end
   end
 
   private
