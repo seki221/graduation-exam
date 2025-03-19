@@ -1,7 +1,0 @@
-<div class='ms-auto'>
-  <% if current_user.bookmark?(schedule) %>
-    <%= render 'unbookmark', { schedule: schedule } %>
-  <% else %>
-    <%= render 'bookmark', { schedule: schedule } %>
-  <% end %>
-</div>
