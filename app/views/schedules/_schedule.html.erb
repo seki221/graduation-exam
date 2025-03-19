@@ -33,9 +33,9 @@
             </li>
           <% end %>
         </div>
-        <%# favorite_button %>
-        <div class="favorite_star mb-3 mt-3">
-          <%= render 'bookmark_buttons', { schedule: schedule } %>
+        <%# bookmark_button %>
+        <div class="bookmark_star mb-3 mt-3">
+          <%= render 'bookmarks/bookmark_buttons', { schedule: schedule } %>
         </div>
         <% if current_user.own?(schedule) %>
         <%# 更新 %>
