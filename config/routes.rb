@@ -21,10 +21,10 @@ Rails.application.routes.draw do
   # planページ
   resources :planners, only: %i[index new create show edit update destroy] do
     resources :schedules, only: %i[index new create show edit update destroy] do
+      resources :bookmarks, only: %i[create destroy], shallow: true
     end
   end
-  resources :bookmarks, only: %i[index destroy]
-  
+
   # mypage
   resource :mypage, only: %i[show edit update] do
     get 'submit_plans', to: 'users#submit_plans'
